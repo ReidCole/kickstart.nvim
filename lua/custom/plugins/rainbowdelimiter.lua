@@ -1,1 +1,3 @@
-return { 'hiphish/rainbow-delimiters.nvim' }
+return {
+  -- 'hiphish/rainbow-delimiters.nvim'
+}

@@ -30,24 +30,28 @@ vim.keymap.set('n', '<leader>jq', '<cmd>wqall<cr>', { desc = 'Write and quit all
 vim.keymap.set('n', '<leader>sg', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>')
 
 -- Harpoon
+-- TODO: consider using absolute mappings instead of relative mappings
+-- (e.g. go to file 3, instead of, go to next file until you land on the right one)
 vim.keymap.set('n', '<leader>jra', ':lua require("harpoon.mark").add_file()<cr>',
   { desc = 'add to harpoon' })
 vim.keymap.set('n', '<leader>jru', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
   { desc = 'harpoon ui' })
-vim.keymap.set('n', '<C-l>', ':lua require("harpoon.ui").nav_next()<cr>',
+vim.keymap.set('n', '<C-l>', '<cmd>lua require("harpoon.ui").nav_next()<cr>',
   { desc = 'harpoon next' })
-vim.keymap.set('n', '<C-h>', ':lua require("harpoon.ui").nav_prev()<cr>',
+vim.keymap.set('n', '<C-h>', '<cmd>lua require("harpoon.ui").nav_prev()<cr>',
   { desc = 'harpoon previous' })
 
 -- Paste over selection without replacing current paste register thingy
 vim.keymap.set('v', '<leader>p', '"_dP')
 
 -- Navigating snippet jump points
+local luasnip = require 'luasnip'
 vim.keymap.set('i', '<C-l>', function() luasnip.jump(1) end)
 vim.keymap.set('i', '<C-h>', function() luasnip.jump(-1) end)
 
--- Fix indentation if it's messed up
-vim.keymap.set('n', '<leader>jft', ':set tabstop=4<cr>:set shiftwidth=4<cr>')
+-- Quickly change indentation
+vim.keymap.set('n', '<leader>jf4', ':set tabstop=4<cr>:set shiftwidth=4<cr>')
+vim.keymap.set('n', '<leader>jf2', ':set tabstop=2<cr>:set shiftwidth=2<cr>')
 
 -- Undotree
 vim.keymap.set('n', '<leader>ut', '<cmd>UndotreeToggle<cr>')
@@ -57,4 +61,8 @@ vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
 vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
 
 -- Search and replace the word your cursor is on
-vim.keymap.set("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = 'search and replace current word in entire buffer'})
+vim.keymap.set('n', '<leader>rs', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'search and replace current word in entire buffer' })
+
+-- Telescope resume
+vim.keymap.set('n', '<leader>jp', '<cmd>Telescope resume<cr>')
