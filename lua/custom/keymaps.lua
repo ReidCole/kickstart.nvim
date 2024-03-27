@@ -30,16 +30,14 @@ vim.keymap.set('n', '<leader>jq', '<cmd>wqall<cr>', { desc = 'Write and quit all
 vim.keymap.set('n', '<leader>sg', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>')
 
 -- Harpoon
--- TODO: consider using absolute mappings instead of relative mappings
--- (e.g. go to file 3, instead of, go to next file until you land on the right one)
 vim.keymap.set('n', '<leader>jra', ':lua require("harpoon.mark").add_file()<cr>',
   { desc = 'add to harpoon' })
-vim.keymap.set('n', '<leader>jru', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
+vim.keymap.set('n', '<C-y>', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
   { desc = 'harpoon ui' })
-vim.keymap.set('n', '<C-l>', '<cmd>lua require("harpoon.ui").nav_next()<cr>',
-  { desc = 'harpoon next' })
-vim.keymap.set('n', '<C-h>', '<cmd>lua require("harpoon.ui").nav_prev()<cr>',
-  { desc = 'harpoon previous' })
+-- vim.keymap.set('n', '<C-l>', '<cmd>lua require("harpoon.ui").nav_next()<cr>',
+--   { desc = 'harpoon next' })
+-- vim.keymap.set('n', '<C-h>', '<cmd>lua require("harpoon.ui").nav_prev()<cr>',
+--   { desc = 'harpoon previous' })
 
 -- Paste over selection without replacing current paste register thingy
 vim.keymap.set('v', '<leader>p', '"_dP')
@@ -66,3 +64,15 @@ vim.keymap.set('n', '<leader>rs', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 
 -- Telescope resume
 vim.keymap.set('n', '<leader>jp', '<cmd>Telescope resume<cr>')
+
+-- Convert to dos
+-- https://vim.fandom.com/wiki/File_format
+vim.keymap.set('n', '<leader>jfd', ':e ++ff=dos<cr>')
+
+-- Tabs
+vim.keymap.set('n', '<C-l>', '<cmd>tabn<cr>',
+  { desc = 'tab next' })
+vim.keymap.set('n', '<C-h>', '<cmd>tabp<cr>',
+  { desc = 'tab prev' })
+vim.keymap.set('n', '<leader>n', '<cmd>tabnew<cr>',
+  { desc = 'tab new' })
